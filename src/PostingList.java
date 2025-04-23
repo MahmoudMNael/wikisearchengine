@@ -117,4 +117,12 @@ public class PostingList {
 		
 		return new PostingList(list1.documentFrequency + list2.documentFrequency, list1.termFrequency + list2.termFrequency);
 	}
+	
+	public void printPostingList() {
+		Posting current = head;
+		while (current != null) {
+			System.out.println("DocumentId: " + current.getDocumentId() + " TermFrequency: " + current.getTermFrequency());
+			current = current.getNext();
+		}
+	}
 }

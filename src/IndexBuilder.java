@@ -12,7 +12,7 @@ public class IndexBuilder {
 		this.invertedIndex = new HashMap<>();
 	}
 	
-	public void buildIndex(SourceData[] sourceData) {
+	public void buildIndex(List<SourceData> sourceData) {
 		for (SourceData data : sourceData) {
 			sources.put(data.getSourceId(), data);
 			Integer documentLength = 0;
@@ -49,6 +49,14 @@ public class IndexBuilder {
 		}
 		
 		return lineLength;
+	}
+	
+	public void printIndex() {
+		System.out.println(invertedIndex.size());
+		for (Map.Entry<String, PostingList> entry : invertedIndex.entrySet()) {
+			System.out.println("Term: " + entry.getKey());
+			entry.getValue().printPostingList();
+		}
 	}
 	
 	private Boolean isQueryable(String word) {

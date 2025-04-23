@@ -1,15 +1,27 @@
+import org.jsoup.nodes.Document;
+
 public class SourceData {
 	private Integer sourceId;
 	private String url;
 	private String title;
 	private String content;
 	private Integer contentLength;
+	private Document doc;
+	private static Integer docId = 0;
 	
 	public SourceData(Integer sourceId, String url, String title, String content) {
 		this.sourceId = sourceId;
 		this.url = url;
 		this.title = title;
 		this.content = content;
+	}
+	
+	public SourceData(Document doc, String url){
+		this.sourceId = docId++;
+		this.url = url;
+		this.title = doc.title();
+		this.content = doc.text();
+		this.doc = doc;
 	}
 	
 	public Integer getSourceId() {
@@ -50,5 +62,9 @@ public class SourceData {
 	
 	public void setContentLength(Integer contentLength) {
 		this.contentLength = contentLength;
+	}
+	
+	public Document getDocument(){
+		return this.doc;
 	}
 }

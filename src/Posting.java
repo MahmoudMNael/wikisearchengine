@@ -10,6 +10,7 @@ public class Posting {
 	
 	public Posting (Integer documentId) {
 		this.documentId = documentId;
+		this.termFrequency = 1;
 	}
 	
 	public Posting getNext() {
