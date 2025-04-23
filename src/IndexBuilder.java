@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class IndexBuilder {
@@ -50,7 +52,7 @@ public class IndexBuilder {
 	}
 	
 	private Boolean isQueryable(String word) {
-		return word.length() >= 2 && !word.equalsIgnoreCase("the") && !word.equalsIgnoreCase("to") && !word.equalsIgnoreCase("be") && !word.equalsIgnoreCase("for") && !word.equalsIgnoreCase("from") && !word.equalsIgnoreCase("in")
-				&& !word.equalsIgnoreCase("into") && !word.equalsIgnoreCase("by") && !word.equalsIgnoreCase("or") && !word.equalsIgnoreCase("and") && !word.equalsIgnoreCase("that");
+		List<String> stopWords = List.of("the", "to", "be", "for", "from", "in", "into", "by", "or", "and", "that");
+		return word.length() >= 2 && !stopWords.contains(word.toLowerCase());
 	}
 }
