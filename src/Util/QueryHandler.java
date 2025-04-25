@@ -12,6 +12,5 @@ public abstract class QueryHandler {
 		Index queryIndex = IndexFactory.build(List.of(sourceData));
 		TFCalculator calculator = new TFCalculator();
 		calculator.calculateTF(queryIndex.getInvertedIndex());
-		calculator.printTF();
 	}
 }
