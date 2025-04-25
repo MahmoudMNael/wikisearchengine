@@ -1,7 +1,7 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Arrays;
 
 public class IndexBuilder {
 	private Map<Integer, SourceData> sources;
@@ -63,4 +63,8 @@ public class IndexBuilder {
 		List<String> stopWords = List.of("the", "to", "be", "for", "from", "in", "into", "by", "or", "and", "that");
 		return word.length() >= 2 && !stopWords.contains(word.toLowerCase());
 	}
+
+    public Map<String, PostingList> getInvertedIndex() {
+        return invertedIndex;
+    }
 }
