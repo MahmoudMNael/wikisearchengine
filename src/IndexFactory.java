@@ -1,29 +1,25 @@
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Arrays;
 
-public class IndexBuilder {
-	private Map<Integer, SourceData> sources;
-	private Map<String, PostingList> invertedIndex;
-	
-	public IndexBuilder() {
-		this.sources = new HashMap<>();
-		this.invertedIndex = new HashMap<>();
-	}
-	
-	public void buildIndex(List<SourceData> sourceData) {
+public abstract class IndexFactory {
+	public static Index buildIndex(List<SourceData> sourceData) {
+		Map<Integer, SourceData> sources = new HashMap<>();
+		Map<String, PostingList> invertedIndex = new HashMap<>();
+		
 		for (SourceData data : sourceData) {
 			sources.put(data.getSourceId(), data);
 			Integer documentLength = 0;
 			for (String contentLine : data.getContent().split("\n")) {
-				documentLength += indexOneLineReturnLineLength(contentLine, data.getSourceId());
+				documentLength += indexOneLineReturnLineLength(invertedIndex, contentLine, data.getSourceId());
 			}
 			sources.get(data.getSourceId()).setContentLength(documentLength);
 		}
+		
+		return new Index(sources, invertedIndex);
 	}
 	
-	public Integer indexOneLineReturnLineLength(String line, Integer documentId) {
+	private static Integer indexOneLineReturnLineLength(Map<String, PostingList> invertedIndex, String line, Integer documentId) {
 		String[] words = line.split("\\W+");
 		Integer lineLength = words.length;
 		
@@ -51,20 +47,8 @@ public class IndexBuilder {
 		return lineLength;
 	}
 	
-	public void printIndex() {
-		System.out.println(invertedIndex.size());
-		for (Map.Entry<String, PostingList> entry : invertedIndex.entrySet()) {
-			System.out.println("Term: " + entry.getKey());
-			entry.getValue().printPostingList();
-		}
-	}
-	
-	private Boolean isQueryable(String word) {
+	private static Boolean isQueryable(String word) {
 		List<String> stopWords = List.of("the", "to", "be", "for", "from", "in", "into", "by", "or", "and", "that");
 		return word.length() >= 2 && !stopWords.contains(word.toLowerCase());
 	}
-
-    public Map<String, PostingList> getInvertedIndex() {
-        return invertedIndex;
-    }
 }

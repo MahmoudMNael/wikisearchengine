@@ -1,7 +1,5 @@
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.io.FileWriter;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -12,20 +10,18 @@ public class Main {
 
         List<SourceData> sourceDataList = crawler.getDocs();
 
-        IndexBuilder indexBuilder = new IndexBuilder();
+        Index index = IndexFactory.buildIndex(sourceDataList);
 
-        indexBuilder.buildIndex(sourceDataList);
-
-        // indexBuilder.printIndex();
+        // index.printIndex();
 
         // ====================== TF-Calculations =========================
         TFCalculator tfCalc = new TFCalculator();
-        tfCalc.calculateTF(indexBuilder.getInvertedIndex());
+        tfCalc.calculateTF(index.getInvertedIndex());
         // tfCalc.printTF();
 
         // ====================== IDF-Calculations =========================
         IDFCalculator idfCalc = new IDFCalculator();
-        idfCalc.calculateIDF(indexBuilder.getInvertedIndex(), crawler.getNumberOfDoc());
+        idfCalc.calculateIDF(index.getInvertedIndex(), index.getSources().size());
         // idfCalc.printIDF();
 
         // ======================= TF-IDF Calculations =========================

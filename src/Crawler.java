@@ -45,8 +45,4 @@ public class Crawler {
 	public List<SourceData> getDocs(){
 		return _docs;
 	}
-
-    public Integer getNumberOfDoc() {
-        return _docs.size();
-    }
 }
