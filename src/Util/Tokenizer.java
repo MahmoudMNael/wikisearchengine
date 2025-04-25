@@ -14,7 +14,7 @@ public abstract class Tokenizer {
 	}
 	
 	private static Boolean isQueryable(String word) {
-		List<String> stopWords = List.of("the", "to", "be", "for", "from", "in", "into", "by", "or", "and", "that");
+		List<String> stopWords = Arrays.asList("the", "to", "be", "for", "from", "in", "into", "by", "or", "and", "that");
 		return word.length() >= 2 && !stopWords.contains(word.toLowerCase());
 	}
 }
