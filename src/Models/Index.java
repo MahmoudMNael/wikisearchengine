@@ -1,4 +1,5 @@
-import java.util.HashMap;
+package Models;
+
 import java.util.Map;
 
 public class Index {
@@ -12,7 +13,6 @@ public class Index {
 	}
 	
 	public void printIndex() {
-		System.out.println(invertedIndex.size());
 		for (Map.Entry<String, PostingList> entry : invertedIndex.entrySet()) {
 			System.out.println("Term: " + entry.getKey());
 			entry.getValue().printPostingList();

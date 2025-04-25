@@ -1,9 +1,16 @@
+package Util;
+
+import Models.Index;
+import Models.Posting;
+import Models.PostingList;
+import Models.SourceData;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public abstract class IndexFactory {
-	public static Index buildIndex(List<SourceData> sourceData) {
+	public static Index build(List<SourceData> sourceData) {
 		Map<Integer, SourceData> sources = new HashMap<>();
 		Map<String, PostingList> invertedIndex = new HashMap<>();
 		
@@ -20,16 +27,10 @@ public abstract class IndexFactory {
 	}
 	
 	private static Integer indexOneLineReturnLineLength(Map<String, PostingList> invertedIndex, String line, Integer documentId) {
-		String[] words = line.split("\\W+");
+		String[] words = Tokenizer.tokenize(line);
 		Integer lineLength = words.length;
 		
 		for (String word : words) {
-			if (!isQueryable(word)) {
-				continue;
-			}
-			
-			word = word.toLowerCase();
-			
 			if (!invertedIndex.containsKey(word)) {
 				invertedIndex.put(word, new PostingList());
 			}
@@ -45,10 +46,5 @@ public abstract class IndexFactory {
 		}
 		
 		return lineLength;
-	}
-	
-	private static Boolean isQueryable(String word) {
-		List<String> stopWords = List.of("the", "to", "be", "for", "from", "in", "into", "by", "or", "and", "that");
-		return word.length() >= 2 && !stopWords.contains(word.toLowerCase());
 	}
 }

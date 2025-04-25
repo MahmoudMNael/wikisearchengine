@@ -1,3 +1,5 @@
+package Models;
+
 public class PostingList {
 	private Integer documentFrequency;
 	private Integer termFrequency;

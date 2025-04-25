@@ -1,0 +1,11 @@
+TODO:
+1. Convert the following classes to be a Utility classes (Abstract classes with static methods that holds no states):
+    - `IDFCalculator`
+    - `TFCalculator`
+    - `DocumentVector`
+
+2. Refactor the `DocumentVector` class to use the static methods from `IDFCalculator` and `TFCalculator` instead of instantiating them.
+
+3. Rename DocumentVector to be VectorFactory that has a build method.
+
+4. Add a Vector model class that holds required data.

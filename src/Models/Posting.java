@@ -1,3 +1,5 @@
+package Models;
+
 public class Posting {
 	private Posting next = null;
 	private Integer documentId;
