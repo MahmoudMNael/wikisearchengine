@@ -15,7 +15,7 @@ public class Main {
 		Crawler crawler = new Crawler(Arrays.asList(
 				"https://en.wikipedia.org/wiki/List_of_pharaohs",
 				"https://en.wikipedia.org/wiki/Pharaoh"),
-				20);
+				10);
 		
 		Index index = IndexFactory.build(crawler.getDocs());
 		
@@ -54,7 +54,7 @@ public class Main {
 				DocumentPriorityQueue rankedDocuments = QueryHandler.handle(query, vectorMap, idfMap);
 				System.out.println("\033[33mResults:\033[0m");
 				
-				final Integer CONSTANT_MAX_COUNT = 15;
+				final Integer CONSTANT_MAX_COUNT = 10;
 				Integer maxCount = CONSTANT_MAX_COUNT;
 				
 				while (!rankedDocuments.isEmpty() && maxCount != 0) {
