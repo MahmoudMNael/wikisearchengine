@@ -18,7 +18,6 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		final Logger LOGGER = Logger.getLogger("SimpleLogger");
 		
-		System.out.println(LocalTime.now());
 		ICrawler crawler = new AsyncCrawler(
 				Arrays.asList(
 						"https://en.wikipedia.org/wiki/List_of_pharaohs",
@@ -26,7 +25,6 @@ public class Main {
 				10,
 				LOGGER
 		);
-		System.out.println(LocalTime.now());
 		
 		Index index = IndexFactory.build(crawler.getDocs());
 		
