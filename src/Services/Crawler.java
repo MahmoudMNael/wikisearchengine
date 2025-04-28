@@ -9,7 +9,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class Crawler {
+public class Crawler implements ICrawler{
 	private List<SourceData> _docs = new ArrayList<>();
 	
 	public Crawler(List<String> startPoint, Integer maxDocuments) throws IOException{

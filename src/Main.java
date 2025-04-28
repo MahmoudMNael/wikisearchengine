@@ -2,22 +2,34 @@ import Models.DocumentPriorityQueue;
 import Models.Index;
 import Models.SourceData;
 import Models.TermFrequencyWeight;
+import Services.AsyncCrawler;
 import Services.Crawler;
+import Services.ICrawler;
 import Util.*;
 import Util.Vector;
 
+import java.time.LocalTime;
 import java.util.*;
+import java.util.logging.Logger;
 
 import static java.lang.System.exit;
 
 public class Main {
 	public static void main(String[] args) throws Exception {
-		Crawler crawler = new Crawler(Arrays.asList(
-				"https://en.wikipedia.org/wiki/List_of_pharaohs",
-				"https://en.wikipedia.org/wiki/Pharaoh"),
-				10);
+		final Logger LOGGER = Logger.getLogger("SimpleLogger");
+		
+		System.out.println(LocalTime.now());
+		ICrawler crawler = new AsyncCrawler(
+				Arrays.asList(
+						"https://en.wikipedia.org/wiki/List_of_pharaohs",
+						"https://en.wikipedia.org/wiki/Pharaoh"),
+				10,
+				LOGGER
+		);
+		System.out.println(LocalTime.now());
 		
 		Index index = IndexFactory.build(crawler.getDocs());
+		
 		
 		// ====================== TF-Calculations =========================
 		Map<String, List<TermFrequencyWeight>> tfMap = TFCalculator.calculateTF(index.getInvertedIndex());
