@@ -4,6 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class Tokenizer {
+	/**
+	 * Tokenizes the input text into an array of words not containing any stop words.
+	 * @param text The input text to tokenize.
+	 * @return An array of tokens (words).
+	 */
 	public static String[] tokenize(String text) {
 		String[] tokens = text.split("\\W+");
 		

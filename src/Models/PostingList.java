@@ -92,34 +92,6 @@ public class PostingList {
 		}
 	}
 	
-	public static PostingList intersectPostingLists(PostingList list1, PostingList list2) {
-		Posting current1 = list1.getHead();
-		Posting current2 = list2.getHead();
-		Posting resultHead = null;
-		Posting resultTail = null;
-		
-		while (current1 != null && current2 != null) {
-			if (current1.getDocumentId().equals(current2.getDocumentId())) {
-				Posting newPosting = new Posting(current1.getDocumentId(), current1.getTermFrequency() + current2.getTermFrequency());
-				if (resultHead == null) {
-					resultHead = newPosting;
-					resultTail = newPosting;
-				} else {
-					resultTail.setNext(newPosting);
-					resultTail = newPosting;
-				}
-				current1 = current1.getNext();
-				current2 = current2.getNext();
-			} else if (current1.getDocumentId() < current2.getDocumentId()) {
-				current1 = current1.getNext();
-			} else {
-				current2 = current2.getNext();
-			}
-		}
-		
-		return new PostingList(list1.documentFrequency + list2.documentFrequency, list1.termFrequency + list2.termFrequency);
-	}
-	
 	public void printPostingList() {
 		Posting current = head;
 		while (current != null) {
