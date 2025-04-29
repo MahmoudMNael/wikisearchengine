@@ -72,7 +72,7 @@ public class Main {
 					Integer documentId = currentDocument.getDocumentId();
 					Double similarity = currentDocument.getSimilarity();
 					SourceData documentData = index.getSources().get(documentId);
-					System.out.println((CONSTANT_MAX_COUNT - maxCount + 1) + ". Title: " + documentData.getTitle() + "\nURL: " + documentData.getUrl());
+					System.out.println((CONSTANT_MAX_COUNT - maxCount + 1) + ". Title: " + documentData.getTitle() + "\nURL: " + documentData.getUrl() + "\nSimilarity: " + similarity);
 					maxCount--;
 				}
 				
