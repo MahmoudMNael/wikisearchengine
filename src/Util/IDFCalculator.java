@@ -35,7 +35,7 @@ public abstract class IDFCalculator {
         return idfMap;
 	}
 
-	
+	// This method prints the IDF values for each term in the console
 	public static void printIDF(Map<String, Double> idMap) {
 		for (Map.Entry<String, Double> entry : idMap.entrySet()) {
 			String term = entry.getKey();
@@ -44,6 +44,7 @@ public abstract class IDFCalculator {
 		}
 	}
 
+    // This method prints the IDF values for each term to a file
     public static void printIDFToFile(Map<String, Double> idfMap, String filePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Map.Entry<String, Double> entry : idfMap.entrySet()) {
