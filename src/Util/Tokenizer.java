@@ -13,12 +13,12 @@ public abstract class Tokenizer {
 		String[] tokens = text.split("\\W+");
 		
 		return Arrays.stream(tokens)
-		    .filter(token -> !token.isEmpty() && isQueryable(token))
+		    .filter(token -> !token.isEmpty() && isIndexable(token))
 		    .map(String::toLowerCase)
 		    .toArray(String[]::new);
 	}
 	
-	private static Boolean isQueryable(String word) {
+	private static Boolean isIndexable(String word) {
 		List<String> stopWords = List.of("the", "to", "be", "for", "from", "in", "into", "by", "or", "and", "that");
 		return word.length() >= 2 && !stopWords.contains(word.toLowerCase());
 	}
